@@ -17,7 +17,7 @@ class Node:
         self.__data = data
 
     @property
-    def next_node(self):
+    def next_node(self) -> Optional['Node']:
         return self.__next
 
     @next_node.setter
@@ -28,6 +28,10 @@ class Node:
 class SingleLinkedList(object):
     def __init__(self):
         self.__head = None
+
+    @property
+    def head(self) -> Node:
+        return self.__head
 
     def find_by_value(self, value):
         node = self.__head
@@ -142,7 +146,51 @@ class SingleLinkedList(object):
         return index
 
     def find_mid_node(self):
-        pass
+        fast = self.__head
+        slow = self.__head
+        while fast.next_node is not None:
+            fast = fast.next_node.next_node
+            slow = slow.next_node
+        return slow
+
+    @staticmethod
+    def create_node(value):
+        return Node(value)
+
+    def print_all(self):
+        pos = self.__head
+        if pos is None:
+            print("There is currently no data in the linked list")
+            return
+        while pos.next_node is not None:
+            print(str(pos.data) + " --> ", end="")
+            pos = pos.next_node
+        print(str(pos.data))
+
+    @staticmethod
+    def __reversed__with_row_node(pre, node):
+        tmp = node.next_node
+        node.next_node = pre
+        pre = node
+        node = tmp
+        return pre, node
+
+    def has_cycle(self) -> bool:
+        fast = self.__head
+        slow = self.__head
+
+        while (fast is not None) and (fast.next_node is not None):
+            fast = fast.next_node.next_node
+            slow = slow.next_node
+            if fast == slow:
+                return True
+        return False
+
+    def __iter__(self):
+        node = self.__head
+        while node:
+            yield node.data
+            node = node.next_node
 
 
 if __name__ == "__main__":
