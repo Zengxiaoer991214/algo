@@ -175,6 +175,30 @@ def print_all(head: Node):
     print("->".join(str(num) for num in nums))
 
 
+def reorder_list(head: Optional[Node]) -> None:
+    """
+    https://leetcode.cn/problems/reorder-list/
+    :param head:
+    :return:
+    """
+    if not head:
+        return
+    vec = list()
+    node = head
+    while node:
+        vec.append(node)
+        node = node.next_node
+    i, j = 0, len(vec) - 1
+    while i < j:
+        vec[i].next_node = vec[j]
+        i += 1
+        if i == j:
+            break
+        vec[j].next_node = vec[i]
+        j -= 1
+    vec[i].next_node = None
+
+
 if __name__ == '__main__':
     test_str_arr = ['ab', 'aa', 'aba', 'abba', 'abcba']
     for string in test_str_arr:
