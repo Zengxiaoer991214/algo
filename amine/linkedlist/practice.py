@@ -178,6 +178,12 @@ def print_all(head: Node):
 def reorder_list(head: Optional[Node]) -> None:
     """
     https://leetcode.cn/problems/reorder-list/
+    示例 1：
+        输入：head = [1,2,3,4]
+        输出：[1,4,2,3]
+    示例 2：
+        输入：head = [1,2,3,4,5]
+        输出：[1,5,2,4,3]
     :param head:
     :return:
     """
@@ -199,7 +205,7 @@ def reorder_list(head: Optional[Node]) -> None:
     vec[i].next_node = None
 
 
-if __name__ == '__main__':
+def test_a():
     test_str_arr = ['ab', 'aa', 'aba', 'abba', 'abcba']
     for string in test_str_arr:
         link = SingleLinkedList()
@@ -207,3 +213,19 @@ if __name__ == '__main__':
             link.insert_to_head(i)
 
         print(is_palindrome(link))
+
+
+def test_b():
+    foo = '12345'
+    link = SingleLinkedList()
+    for i in foo[::-1]:
+        link.insert_to_head(i)
+    link.print_all()
+    node = link.head
+    reorder_list(node)
+    link.print_all()
+
+
+if __name__ == '__main__':
+    # test_a()
+    test_b()
