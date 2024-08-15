@@ -71,9 +71,7 @@ def insertion_sort(a: List[int]):
 
 
 def merge_sort(a: List[int]):
-    length = len(a)
-    if length <= 1:
-        return
+    _merge_sort(a, 0, len(a) - 1)
 
 
 def _merge_sort(a: List[int], low: int, high: int):
@@ -98,6 +96,34 @@ def _merge(a, low, mid, high):
     end = j if j <= mid else high
     tem.extend(a[start:end + 1])
     a[low:high + 1] = tem
+
+
+def quick_sort(a: List[int]):
+    a[::] = _quick_sort(a)[::]
+
+def _quick_sort(a: List[int]) -> List[int]:
+    if len(a) <= 1:
+        return a
+    pivot = a[len(a) // 2]
+    left = [x for x in a if x < pivot]
+    mid = [x for x in a if x == pivot]
+    right = [x for x in a if x > pivot]
+    return _quick_sort(left) + mid + _quick_sort(right)
+
+
+def test_quick_sort():
+    a1 = [3, 5, 6, 7, 8]
+    quick_sort(a1)
+    assert a1 == [3, 5, 6, 7, 8]
+    a2 = [2, 2, 2, 2]
+    quick_sort(a2)
+    assert a2 == [2, 2, 2, 2]
+    a3 = [4, 3, 2, 1]
+    quick_sort(a3)
+    assert a3 == [1, 2, 3, 4]
+    a4 = [5, -1, 9, 3, 7, 8, 3, -2, 9]
+    quick_sort(a4)
+    assert a4 == [-2, -1, 3, 3, 5, 7, 8, 9, 9]
 
 
 def test_bubble_sort():
@@ -137,18 +163,7 @@ def test_selection_sort():
 
 
 if __name__ == "__main__":
-    aay = [5, 6, -1, 4, 2, 8, 10, 7, 6]
-    bubble_sort(aay)
-    print(aay)
-
-    aay = [5, 6, -1, 4, 2, 8, 10, 7, 6]
-    insertion_sort(aay)
-    print(aay)
-
-    aay = [5, 6, -1, 4, 2, 8, 10, 7, 6]
-    selection_sort(aay)
-    print(aay)
-
-    test_bubble_sort()
-    test_selection_sort()
-    test_insertion_sort()
+    # test_bubble_sort()
+    # test_selection_sort()
+    # test_insertion_sort()
+    test_quick_sort()
