@@ -101,6 +101,7 @@ def _merge(a, low, mid, high):
 def quick_sort(a: List[int]):
     a[::] = _quick_sort(a)[::]
 
+
 def _quick_sort(a: List[int]) -> List[int]:
     if len(a) <= 1:
         return a
@@ -110,6 +111,27 @@ def _quick_sort(a: List[int]) -> List[int]:
     right = [x for x in a if x > pivot]
     return _quick_sort(left) + mid + _quick_sort(right)
 
+
+def counting_sort(a: List[int]):
+    if len(a) <= 1:
+        return
+    min_val = min(a)
+    max_val = max(a)
+
+    count = [0] * (max_val - min_val + 1)
+
+    for num in a:
+        count[num - min_val] += 1
+
+    for i in range(1, len(count)):
+        count[i] += count[i-1]
+
+    output = [0] * len(a)
+    for num in reversed(a):
+        output[count[num - min_val] - 1] = num
+        count[num - min_val] -= 1
+
+    return output
 
 def test_quick_sort():
     a1 = [3, 5, 6, 7, 8]
