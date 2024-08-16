@@ -38,3 +38,12 @@ def _binary_search_recursion(nums: List[int], low: int, high: int, target: int) 
         return _binary_search_recursion(nums, mid + 1, high, target)
     else:
         return _binary_search_recursion(nums, low, mid - 1, target)
+
+
+if __name__ == '__main__':
+    high = 8
+    low = 1
+    print(int((high - low) >> 1))
+    print((high - low) >> 1)
+    print((high - low) // 2)
+    print((high - low) / 2)
