@@ -65,7 +65,7 @@ class SkipList:
         update: Optional[ListNode] = [None] * self._level_count
         p = self._head
         for i in range(self._level_count - 1, -1, -1):
-            while p.forwards[i] and p.forwards[i].data < value
+            while p.forwards[i] and p.forwards[i].data < value:
                 p = p.forwards[i]
             update[i] = p
         if p.forwards[0] and p.forwards[0].data == value:
