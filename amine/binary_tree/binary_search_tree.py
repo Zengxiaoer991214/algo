@@ -7,9 +7,9 @@
 @usage   :
     
 """
+import math
+from queue import Queue
 from typing import Optional, List
-
-import parso.tree
 
 
 class TreeNode:
@@ -22,7 +22,9 @@ class TreeNode:
 
 class BinarySearchTree:
 
-    def __init__(self, val_list: List[int] = []):
+    def __init__(self, val_list=None):
+        if val_list is None:
+            val_list = []
         self.root: Optional['TreeNode'] = None
         for n in val_list:
             self.insert(n)
@@ -133,3 +135,117 @@ class BinarySearchTree:
                 node.parent = None
                 node.right = None
         else:
+            min_node = node.right
+            if min_node.left:
+                min_node = min_node.left
+            if node.val != min_node.val:
+                node.val = min_node.val
+                self._del(min_node)
+            else:
+                self._del(min_node)
+                self._del(node)
+
+    def get_min(self) -> Optional[int]:
+        if self.root is None:
+            return None
+
+        n = self.root
+        while n.left:
+            n = n.left
+        return n.val
+
+    def get_max(self) -> Optional[int]:
+        if not self.root:
+            return None
+
+        n = self.root
+        while n.right:
+            n = n.right
+        return n.val
+
+    def in_order(self) -> List[int]:
+        if not self.root:
+            return []
+        return self._in_order(self.root)
+
+    def _in_order(self, node: TreeNode) -> List[int]:
+        if not node:
+            return []
+        res = []
+        n = node
+        res.extend(self._in_order(n.left))
+        res.append(n.val)
+        res.extend(self._in_order(n.right))
+        return res
+
+    def __repr__(self):
+        print(str(self.in_order()))
+        return self._draw_tree()
+
+    def _draw_tree(self) -> str | None:
+        nodes = self._bfs()
+
+        if not nodes:
+            print('Empty Tree')
+            return
+
+        layer_num = int(math.log(nodes[-1][1], 2)) + 1
+        prt_nums = []
+        for n in range(layer_num):
+            prt_nums.append([None] * 2 ** n)
+
+        for v, p in nodes:
+            row = int(math.log(p, 2))
+            col = p % 2**row
+            prt_nums[row][col] = v
+
+        prt_str = ''
+        for l in prt_nums:
+            prt_str += str(l)[1:-1] + "\n"
+
+        return prt_str
+
+    def _bfs(self):
+        if not self.root:
+            return []
+
+        res = []
+        q = Queue()
+        q.put((self.root, 1))
+        while not q.empty():
+            n = q.get()
+            if n[0] is not None:
+                res.append((n[0].val, n[1]))
+                q.put((n[0].left, n[1] * 2))
+                q.put((n[0].right, n[1] * 2 + 1))
+        return res
+
+
+if __name__ == '__main__':
+    nums = [4, 2, 5, 6, 1, 7, 3]
+    bst = BinarySearchTree(nums)
+    print(bst)
+
+    # 插入
+    bst.insert(1)
+    bst.insert(4)
+    print(bst)
+
+    # 搜索
+    for n in bst.search(2):
+        print(n.parent.val, n.val)
+
+    # 删除
+    bst.insert(6)
+    bst.insert(7)
+    print(bst)
+    bst.delete(7)
+    print(bst)
+    bst.delete(6)
+    print(bst)
+    bst.delete(4)
+    print(bst)
+
+    # min max
+    print(bst.get_max())
+    print(bst.get_min())
