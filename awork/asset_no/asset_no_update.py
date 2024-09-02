@@ -34,38 +34,38 @@ def generate_update_sql(excel_file: str, meter_no_col: str, asset_no_col: str, o
 base_uri: str = r"E:\linli\algo\algo\awork"
 
 generate_update_sql(
-    excel_file="./file/MeterWithoutDiscoNo_20240815_0.2.xlsx",
+    excel_file="file/MeterWithoutDiscoNo_20240815_0.2.xlsx",
     meter_no_col='meter_no',  # Excel中的表头名
     asset_no_col='asset_no',  # Excel中的表头名
-    output_sql_file='./output/update_MeterWithoutDiscoNo_20240815_0.2.sql'
+    output_sql_file='output/update_MeterWithoutDiscoNo_20240815_0.2.sql'
 )
 
 generate_update_sql(
-    excel_file="./file/01_ShipmentFile_20240814_LG_E570_MEDC.xlsx",
+    excel_file="file/01_ShipmentFile_20240814_LG_E570_MEDC.xlsx",
     meter_no_col='Serial_number',  # Excel中的表头名
     asset_no_col='Asset_number',  # Excel中的表头名
-    output_sql_file='./output/update_01_ShipmentFile_20240814_LG_E570_MEDC.sql'
+    output_sql_file='output/update_01_ShipmentFile_20240814_LG_E570_MEDC.sql'
 )
 
 generate_update_sql(
-    excel_file="./file/02_ShipmentFile_20240815_LG_E570_MJEC.xlsx",
+    excel_file="file/02_ShipmentFile_20240815_LG_E570_MJEC.xlsx",
     meter_no_col='Serial_number',  # Excel中的表头名
     asset_no_col='Asset_number',  # Excel中的表头名
-    output_sql_file='./output/update_02_ShipmentFile_20240815_LG_E570_MJEC.sql'
+    output_sql_file='output/update_02_ShipmentFile_20240815_LG_E570_MJEC.sql'
 )
 
 generate_update_sql(
-    excel_file="./file/03_ShipmentFile_20240815_LG_E570_MZEC.xlsx",
+    excel_file="file/03_ShipmentFile_20240815_LG_E570_MZEC.xlsx",
     meter_no_col='Serial_number',  # Excel中的表头名
     asset_no_col='Asset_number',  # Excel中的表头名
-    output_sql_file='./output/update_03_ShipmentFile_20240815_LG_E570_MZEC.sql'
+    output_sql_file='output/update_03_ShipmentFile_20240815_LG_E570_MZEC.sql'
 )
 
 generate_update_sql(
-    excel_file="./file/04_ShipmentFile_20240815_LG_E570_TNWR.xlsx",
+    excel_file="file/04_ShipmentFile_20240815_LG_E570_TNWR.xlsx",
     meter_no_col='Serial_number',  # Excel中的表头名
     asset_no_col='Asset_number',  # Excel中的表头名
-    output_sql_file='./output/update_04_ShipmentFile_20240815_LG_E570_TNWR.sql'
+    output_sql_file='output/update_04_ShipmentFile_20240815_LG_E570_TNWR.sql'
 )
 
 # if __name__ == '__main__':
