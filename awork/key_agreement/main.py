@@ -1,8 +1,8 @@
-from cryptography.hazmat.primitives.asymmetric import ec
-from cryptography.hazmat.primitives import serialization
+import binascii
+
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
-import binascii
+from cryptography.hazmat.primitives import serialization
 
 
 def get_key_agreement(digital_signature):
