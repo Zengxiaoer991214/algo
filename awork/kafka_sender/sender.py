@@ -3,6 +3,8 @@ from confluent_kafka import Producer
 conf = {
     'bootstrap.servers': '10.32.246.160:30463',
     # 'bootstrap.servers': '10.32.246.180:30463',
+    # 'bootstrap.servers': '10.32.246.160:30077',
+    # 'bootstrap.servers': '10.32.246.110:9092',10.32.246.160:30463
 }
 
 producer = Producer(**conf)
@@ -25,6 +27,7 @@ def send_file_to_kafka(file_path, topic):
 
 
 if __name__ == '__main__':
-    file_path = r'E:\开发文档\202409\05 shipment external\msg.txt'
+    # file_path = r'E:\开发文档\202409\05 shipment external\msg.txt'
+    file_path = r'E:\ll 企业微信\WXWork\1688858166324791\Cache\File\2024-09\new 1'
     kafka_topic = 'hes_device_shipment_external'  # Kafka中的目标主题
     send_file_to_kafka(file_path, kafka_topic)
